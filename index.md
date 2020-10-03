@@ -25,9 +25,9 @@ The best outcome of this project would be a successful prediction of the accurac
 ### References
 
 1. Vosoughi, Soroush. “The Spread of True and False News Online.” Science, vol. 359, no. 6380, 2018, pp. 1146-1151. Science, science.sciencemag.org/content/359/6380/1146.
----
+
 2. Thota, Aswini, et al. “Fake News Detection: A Deep Learning Approach.” SMU Data Science Review, vol. 1, no. 3, 2018. https://scholar.smu.edu/datasciencereview/vol1/iss3/10/.
----
+
 3. Mustakim et al 2019 J. Phys.: Conf. Ser. 1363 012001. "DBSCAN algorithm: twitter text clustering of trend topic pilkadapekanbaru." https://iopscience.iop.org/article/10.1088/1742-6596/1363/1/012001
 
 _This project proposal is produced for Georgia Tech CS 4641 - Fall 2020_
