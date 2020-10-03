@@ -1,5 +1,3 @@
-## Analyzing Fake News Based on Article Clustering
-
 ![Image](infographic.png)
 
 ### Introduction
