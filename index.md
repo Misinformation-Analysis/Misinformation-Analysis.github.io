@@ -16,8 +16,7 @@ Based on the clustering results given by the unsupervised clustering, we hope to
 
 ### Discussion
 
-The best outcome of this project would be a successful prediction of the accuracy of a news article. Misinformation could be unintentional, false stories, or news developed for the purpose of influencing the reader in a certain direction [(_Thota_)](https://scholar.smu.edu/datasciencereview/vol1/iss3/10/). The news article will then be flagged with its validity level and readers will be aware of the reputability of the article. This will, in turn, lead to a slowed spread of fake news. A better-informed reader will lead to them making decisions based on facts rather than misinformation that they might have been consuming otherwise. If mainstream media outlets and platforms were able to better screen for accurate information, the public discourse around controversial issues would be heavily improved.
-
+The best outcome of this project would be a successful prediction of the accuracy of a news article. Misinformation could be unintentional, false stories, or news developed for the purpose of influencing the reader in a certain direction [(_Thota_)](https://scholar.smu.edu/datasciencereview/vol1/iss3/10/). We hope to then analyze these predictions to better identify key indicators and sources. This information will be useful for fact checkers and people developing robust fake news detection systems. This will, in turn, lead to a slowed spread of fake news. A better-informed reader will lead to them making decisions based on facts rather than misinformation that they might have been consuming otherwise. If mainstream media outlets and platforms were able to better screen for accurate information, the public discourse around controversial issues would be heavily improved.
 
 ### References
 
