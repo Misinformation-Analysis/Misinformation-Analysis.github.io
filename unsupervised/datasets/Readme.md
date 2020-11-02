@@ -1,2 +1,0 @@
-## Datasets for Unsupervised Learning
-The dataset files are too large to be hosted on Github, and must be downloaded separately and moved to this folder. Please refer to the main Readme file for acquiring the datasets.
