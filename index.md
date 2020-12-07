@@ -36,7 +36,7 @@ The following image shows the sizes of each cluster of articles. We arbitrarily 
 </ol>
 
 
-![Image](images/Group Distribution.png)
+![Image](images/Group_Distribution.png)
 
 The distribution for our data was fairly similar between the different group labels. The smallest label had 5.74k data points, while the second largest had 16.99k. However, the largest group (with "people, film, life, time, thing" as its most frequent words) had 35.52k, which was quite a bit larger than any other group. This is largely dependent on what data set of articles was used, but it makes sense that the large number of articles with such broadly applicable words would form a single large cluster, while articles with words related to topics like sports or economics that share little overlap would instead form smaller individual clusters.
 
@@ -44,7 +44,7 @@ The distribution for our data was fairly similar between the different group lab
 
 One example of what happens after clustering is shown for the following article—House Republicans Fret About Winning Their Health Care Suit. The following chart shows the likelihoods that the article belongs to each label.
 
-![Image](images/Single Article Probability.png)
+![Image](images/Single_Article_Probability.png)
 
 Based on the words used in this article, including “health”, “law”, “court”, and “insurance”, we would expect this to be under label 6. However, it also shares some overlap with the words "president" and "report" commonly found in label 5 (political investigations), as well as the word "team" commonly found in label 7 (sports), adding to its likelihood of belonging to those groups. As such, our model gives it around an 76% likelihood of being under label 6, as well as a ~9% likelihood of being under label 5 and a ~6% likelihood for label 7.
 
@@ -56,37 +56,37 @@ It is worth noting that our distribution will have outlier articles. The outlier
 Below, we have created word clouds showing the most frequent 15 words for each of the 10 groups. The words' sizes are directly proportional to their TF-IDF value used to cluster these articles. It is quite easy to see the general subject matter of each of the clusters based on these visualizations.
 
 **Group 0: "International Affairs"**
-![Image](images/Word Clouds/Group 0.png)
+![Image](images/Word_Clouds/Group_0.png)
 
 **Group 1: "Law Enforcement"**
-![Image](images/Word Clouds/Group 1.png)
+![Image](images/Word_Clouds/Group_1.png)
 
 **Group 2: "Economics"**
-![Image](images/Word Clouds/Group 2.png)
+![Image](images/Word_Clouds/Group_2.png)
 
 **Group 3: "Entertainment"**
-![Image](images/Word Clouds/Group 3.png)
+![Image](images/Word_Clouds/Group_3.png)
 
 **Group 4: "Political Events"**
-![Image](images/Word Clouds/Group 4.png)
+![Image](images/Word_Clouds/Group_4.png)
 
 **Group 5: "Political Investigations"**
-![Image](images/Word Clouds/Group 5.png)
+![Image](images/Word_Clouds/Group_5.png)
 
 **Group 6: "Healthcare"**
-![Image](images/Word Clouds/Group 6.png)
+![Image](images/Word_Clouds/Group_6.png)
 
 **Group 7: "Sports"**
-![Image](images/Word Clouds/Group 7.png)
+![Image](images/Word_Clouds/Group_7.png)
 
 **Group 8: "Education"**
-![Image](images/Word Clouds/Group 8.png)
+![Image](images/Word_Clouds/Group_8.png)
 
 **Group 9: "Domestic Violence"**
-![Image](images/Word Clouds/Group 9.png)
+![Image](images/Word_Clouds/Group_9.png)
 
 All in all, we are satisfied with the results of the clustering, specifically the way the articles formed groups with subjects relatively distinct from one another. This will prove useful as we move forward into the supervised portion of the project, and we are eager to see which of these topics have a higher-than-average level of misinformation.
 
 
 
-_This project proposal is produced for Georgia Tech CS 4641 - Fall 2020_
+_This project was created for Georgia Tech CS 4641 - Fall 2020_
