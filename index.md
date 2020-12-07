@@ -42,18 +42,18 @@ The distribution for our data was fairly similar between the different group lab
 
 **Label Weights of Example Article**  
 
-One example of what happens after clustering is shown for the following article—House Republicans Fret About Winning Their Health Care Suit. The following chart shows the likelihoods that the article belongs to each label.
+One example of what happens after clustering is shown for the following article— _House Republicans Fret About Winning Their Health Care Suit_. The following chart shows the likelihoods that the article belongs to each label/category.
 
 ![Image](images/Single_Article_Probability.png)
 
-Based on the words used in this article, including “health”, “law”, “court”, and “insurance”, we would expect this to be under label 6. However, it also shares some overlap with the words "president" and "report" commonly found in label 5 (political investigations), as well as the word "team" commonly found in label 7 (sports), adding to its likelihood of belonging to those groups. As such, our model gives it around an 76% likelihood of being under label 6, as well as a ~9% likelihood of being under label 5 and a ~6% likelihood for label 7.
+Based on the words used in this article, including “health”, “law”, “court”, and “insurance”, we would expect this to be under label 6 (Healthcare). However, it also shares some overlap with the words "president" and "report" commonly found in label 5 (Political Investigations), as well as the word "team" commonly found in label 7 (sports), adding to its likelihood of belonging to those groups. As such, our model gives it around an 76% likelihood of being under label 6, as well as a ~9% likelihood of being under label 5 and a ~6% likelihood for label 7.
 
 
 It is worth noting that our distribution will have outlier articles. The outliers are either articles that don’t fit very well into any of the topics, or articles that are a combination of the topics. For example, a scientific article about space would be unlikely to fit strongly into any of the topics, or share a lot of words in common with them. On the other hand, an article about the presidential race and its impact on healthcare would likely share many words between labels 4 and 6.
 
 **Visualizations for Each Label**  
 
-Below, we have created word clouds showing the most frequent 15 words for each of the 10 groups. The words' sizes are directly proportional to their TF-IDF value used to cluster these articles. It is quite easy to see the general subject matter of each of the clusters based on these visualizations.
+Below, we have created word clouds showing the most frequent 15 words for each of the 10 groups. The words' sizes are directly proportional to their TF-IDF value used to cluster these articles. It is quite easy to see the general subject matter of each of the clusters based on these visualizations. This word cloud pictures were also how we decided on the category names.
 
 **Group 0: "International Affairs"**
 ![Image](images/Word_Clouds/Group_0.png)
@@ -85,8 +85,26 @@ Below, we have created word clouds showing the most frequent 15 words for each o
 **Group 9: "Domestic Violence"**
 ![Image](images/Word_Clouds/Group_9.png)
 
-All in all, we are satisfied with the results of the clustering, specifically the way the articles formed groups with subjects relatively distinct from one another. This will prove useful as we move forward into the supervised portion of the project, and we are eager to see which of these topics have a higher-than-average level of misinformation.
+All in all, we are satisfied with the results of the unsupervised clustering, specifically the way the articles formed groups with subjects relatively distinct from one another. This was useful as we moved forward into the supervised portion of the project. The end goal of the project is still to determine if certain categories from above are more o1q r less prone to fake news.
 
+## Creation of the Classifier
+The next goal for the project was to build a classifier to help identify fake news in the unsupervised clusters. To accomplish this task we first needed to find a labeled dataset of online articles. This step proved to be a bit of a challenge because most labeled fake news dataset were based entirely on politics. Eventually, we were able to find a [dataset](https://www.kaggle.com/clmentbisaillon/fake-and-real-news-datase) that contained several topics and was an appropriate size of ~39k labeled articles. It was not perfect, but definitely was workable for our project goal. It is important to keep in mind our project goal was not to create a perfect fake news classifier, but rather discover if there are certain categories that or more or less prone to fake news as a whole. Ultimately and ironically, when using a publicly available dataset you are still going by 3rd party's definition of fake news.
 
+### Datatset Preprocessing
+Even though we found a dataset that fit our requirement it is worth noting we still had to perform the same preprocessing that we did on the article from the unsupervised learning section. This mainly includes putting it into a similar dataframe and removing all unnecessary nouns as they actually only distract and confuse the classification and clustering process.
+
+### Selection of the Classifier
+For our final iteration we chose the [PassiveAggressiveClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PassiveAggressiveClassifier.html). It had the best overall stats after training and testing with the follow analytical scores:
+| Name | Score |
+| --- | --- |
+| Accuracy | 94.34% |
+| Precision: | 0.9181 |
+| Recall: | 0.9538 |
+| F1 Score: | 0.9456 | 
+
+Using the partitioned test data it also had the following confusion matrix:
+ ![Image](images/Confusion_Matrix.png)
+
+## Classifying the Original Dataset
 
 _This project was created for Georgia Tech CS 4641 - Fall 2020_
