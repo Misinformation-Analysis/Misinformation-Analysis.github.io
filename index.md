@@ -1,10 +1,10 @@
 ![Image](images/infographic.png)
 
 ## Purpose & Goal
-The purpose of our project is to identify whether certain categories of articles were more reliable or more fake through the analysis of different features of an article. Fake news refers to the deliberate distribution of misinformation—news whose main purpose is to distort the truth for the intention of persuasion seeking to drive action. When clustering the data using feature extraction and TF-IDF vectorization, we can separate out the different types of articles into topic models based on the dataset articles’ content. Our goal is to assign each article to one of these topics so that when we run our supervised learning classification it can help identify which topics of articles have the highest tendencies of misinformation. This way online publishers can better partition resources to combat misinformation where it is most needed.
+The purpose of our project is to identify whether certain categories of articles were more reliable or more fake through the analysis of different features of an article. Fake news refers to the deliberate distribution of misinformation—news whose main purpose is to distort the truth for the intention of persuasion seeking to drive action. When clustering the data using feature extraction and TF-IDF vectorization, we can separate out the different types of articles into topic models based on the dataset articles’ content. Our goal is to assign each article to one of these topics. We will then train a classifier using a different dataset of articles labeled “fake” or “not fake.” Finally, when we run the classifier on the original dataset of articles grouped by topic, it can help identify which topics have the highest tendencies to spread misinformation. This way online publishers can better partition resources to combat misinformation where it is most needed.
 
-## Unsupervised Portion
-For the unsupervised portion of this project our group decided to employ a clustering algorithm in order to get an idea of what topics are present in our datasets. Our datasets are a collection of over 143,000 news articles from various publications with fields for information including the title, publication, author, year, and content. In order to begin creating clusters of the topics present in these articles, we had to first perform data cleaning to eliminate any “noise words”, which in this case were any words that were not informative to the topic of our articles (i.e. non-nouns, pronouns, adjectives, etc). We therefore ran a remove_nonnouns method which parsed through our dataset articles and removed any non noun words, because topics are almost always nouns and the inclusion of other words would convolute our clustering algorithm.
+## Clustering by Content
+For the unsupervised portion of this project, our group decided to employ a clustering algorithm in order to get an idea of what topics are present in our datasets. Our datasets are a collection of over 143,000 news articles from various publications with fields for information including the title, publication, author, year, and content. In order to begin creating clusters of the topics present in these articles, we had to first perform data cleaning to eliminate any “noise words”, which in this case were any words that were not informative to the topic of our articles (i.e. non-nouns, pronouns, adjectives, etc). We therefore ran a remove_nonnouns method which parsed through our dataset articles and removed any non noun words, because topics are almost always nouns and the inclusion of other words would convolute our clustering algorithm.
 
 Next, we used pure feature extraction from the article text content in order to convert our text into numerical values and separate and cluster based on similarity. For this text clustering we used TF-IDF (Term Frequency-Inverse Document Frequency) vectorization, which is a method for comparing these numerical values to determine how important a word is to a collection of texts—in this case our news articles. In other words, this gave us a ratio of the number of current words to the total number of words in our dataset, and we used the highest ratios to form our topic word clusters. We performed this TF-IDF vectorization only on the article content so as to avoid unnecessary clustering based on irrelevant fields like publication name, author, and date. We chose to set the maximum number of features at 5,000 after taking into consideration the high volume of articles and content being parsed. We also chose to ignore terms that appear in greater than 95% of articles and terms that appear in less than 2 articles to ensure that our features are of relatively significant value.
 
@@ -13,24 +13,24 @@ After feature extraction it was time to use an NMF (non-negative matrix approxim
 ### Understanding the Unsupervised Dataset
 We separated our data into 10 separate clusters based on the distribution of words in each article. Afterwards, we looked at the most common words for each cluster, and saw that each cluster generally shared a common theme. For example, one cluster had “voter campaign candidate party election poll vote state nominee race” as its 10 most common words—clearly indicating that the articles in the clusters were highly related to political events. Another topic had “game team season player coach league year fan football ball” as its most frequent words, indicating that these articles were generally related to sports. This made sense for our classification, as we would expect articles to cluster around certain types of subjects, and for the words in articles of each subject to be generally more similar to each other than to articles of other subjects, resulting in this subject-based clustering.
 
-### Unsupervised Clustering Group Distribution
+### Cluster Distribution
 
 The following image shows the sizes of each cluster of articles. We arbitrarily assigned the following names to the groups based on the general subject matter of the most common words in order to more easily distinguish the groups. Note that these names are in no way objective, and were assigned solely for ease in differentiating the groups.
 
-<ol start="0">
-  <li>International Affairs</li>
-  <li>Law Enforcement</li>
-  <li>Economics</li>
-  <li>Entertainment</li>
-  <li>Political Events</li>
-  <li>Political Investigations</li>
-  <li>Healthcare</li>
-  <li>Sports</li>
-  <li>Education</li>
-  <li>Domestic Violence</li>
-</ol>
+| Number | Topic |
+| --- | --- |
+| 0 | International Affairs |
+| 1 | Law Enforcement |
+| 2 | Economics |
+| 3 | Entertainment | 
+| 4 | Political Events |
+| 5 | Political Investigations |
+| 6 | Healthcare |
+| 7 | Sports |
+| 8 | Education |
+| 9 | Domestic Violence |
 
-![Image](images/Group_Distribution.png)
+<img src="images/Group_Distribution.png", width="400"/>
 
 The distribution for our data was fairly similar between the different group labels. The smallest label had 5.74k data points, while the second largest had 16.99k. However, the largest group (with "people, film, life, time, thing" as its most frequent words) had 35.52k, which was quite a bit larger than any other group. This is largely dependent on what data set of articles was used, but it makes sense that the large number of articles with such broadly applicable words would form a single large cluster, while articles with words related to topics like sports or economics that share little overlap would instead form smaller individual clusters.
 
@@ -48,40 +48,40 @@ It is worth noting that our distribution will have outlier articles. The outlier
 
 Below, we have created word clouds showing the most frequent 15 words for each of the 10 groups. The words' sizes are directly proportional to their TF-IDF value used to cluster these articles. It is quite easy to see the general subject matter of each of the clusters based on these visualizations. This word cloud pictures were also how we decided on the category names.
 
-**Group 0: "International Affairs"**
-![Image](images/Word_Clouds/Group_0.png)
+**Group 0: "International Affairs"**  
+<img src="images/Word_Clouds/Group_0.png", width="400"/>
 
-**Group 1: "Law Enforcement"**
-![Image](images/Word_Clouds/Group_1.png)
+**Group 1: "Law Enforcement"**  
+<img src="images/Word_Clouds/Group_1.png", width="400"/>
 
-**Group 2: "Economics"**
-![Image](images/Word_Clouds/Group_2.png)
+**Group 2: "Economics"**  
+<img src="images/Word_Clouds/Group_2.png", width="400"/>
 
-**Group 3: "Entertainment"**
-![Image](images/Word_Clouds/Group_3.png)
+**Group 3: "Entertainment"**  
+<img src="images/Word_Clouds/Group_3.png", width="400"/>
 
-**Group 4: "Political Events"**
-![Image](images/Word_Clouds/Group_4.png)
+**Group 4: "Political Events"**  
+<img src="images/Word_Clouds/Group_4.png", width="400"/>
 
-**Group 5: "Political Investigations"**
-![Image](images/Word_Clouds/Group_5.png)
+**Group 5: "Political Investigations"**  
+<img src="images/Word_Clouds/Group_5.png", width="400"/>
 
-**Group 6: "Healthcare"**
-![Image](images/Word_Clouds/Group_6.png)
+**Group 6: "Healthcare"**  
+<img src="images/Word_Clouds/Group_6.png", width="400"/>
 
-**Group 7: "Sports"**
-![Image](images/Word_Clouds/Group_7.png)
+**Group 7: "Sports"**  
+<img src="images/Word_Clouds/Group_7.png", width="400"/>
 
-**Group 8: "Education"**
-![Image](images/Word_Clouds/Group_8.png)
+**Group 8: "Education"**  
+<img src="images/Word_Clouds/Group_8.png", width="400"/>
 
-**Group 9: "Domestic Violence"**
-![Image](images/Word_Clouds/Group_9.png)
+**Group 9: "Domestic Violence"**  
+<img src="images/Word_Clouds/Group_9.png", width="400"/>
 
 All in all, we are satisfied with the results of the unsupervised clustering, especially the way the articles formed groups with subjects relatively distinct from one another. This was useful as we moved forward into the supervised portion of the project. The end goal of the project is still to determine if certain categories from above are more or less prone to fake news.
 
 ## Creation of the Classifier
-The next goal for the project was to build a classifier to help identify fake news in the unsupervised clusters. To accomplish this task we first needed to find a labeled dataset of online articles. This step proved to be a bit of a challenge because most labeled fake news dataset were based entirely on politics. Eventually, we were able to find a [dataset](https://www.kaggle.com/clmentbisaillon/fake-and-real-news-datase) that contained several topics and was an appropriate size of ~39k labeled articles. It was not perfect, but definitely was workable for our project goal. It is important to keep in mind our project goal was not to create a perfect fake news classifier, but rather discover if there are certain categories that are more or less prone to fake news as a whole. Ultimately and ironically, when using a publicly available dataset you are still going by 3rd party's definition of fake news.
+The next goal for the project was to build a classifier to help identify fake news in the unsupervised clusters. To accomplish this task we first needed to find a labeled dataset of online articles. This step proved to be a bit of a challenge because most labeled fake news dataset were based entirely on politics. Eventually, we were able to find a [dataset](https://www.kaggle.com/clmentbisaillon/fake-and-real-news-dataset) that contained several topics and was an appropriate size of ~39k labeled articles. It was not perfect, but definitely was workable for our project goal. It is important to keep in mind our project goal was not to create a perfect fake news classifier, but rather discover if there are certain categories that are more or less prone to fake news as a whole. Ultimately and ironically, when using a publicly available dataset you are still going by 3rd party's definition of fake news.
 
 ### Dataset Preprocessing
 Even though we found a dataset that fit our requirement, it is worth noting we still had to perform the same preprocessing that we did on the article from the unsupervised learning section. This mainly includes putting it into a similar dataframe and removing all unnecessary non-nouns as they actually only distract and confuse the classification and clustering process.
