@@ -38,7 +38,7 @@ The distribution for our data was fairly similar between the different group lab
 
 One example of what happens after clustering is shown for the following article— _House Republicans Fret About Winning Their Health Care Suit_. The following chart shows the likelihoods that the article belongs to each label/category.
 
-![Image](images/Single_Article_Probability.png)
+<img src="images/Single_Article_Probability.png" width="500"/>
 
 Based on the words used in this article, including “health”, “law”, “court”, and “insurance”, we would expect this to be under label 6 (Healthcare). However, it also shares some overlap with the words "president" and "report" commonly found in label 5 (Political Investigations), as well as the word "team" commonly found in label 7 (sports), adding to its likelihood of belonging to those groups. As such, our model gives it around an 76% likelihood of being under label 6, as well as a ~9% likelihood of being under label 5 and a ~6% likelihood for label 7.
 
@@ -120,7 +120,7 @@ We tried training several models on the dataset, namely a Passive-Aggressive Cla
 All 3 classifiers performed fairly well on the test data. In the end, we decided to go with the Passive-Aggressive classifier, because it had the best stats when compared with the other two models.  
 
 Using the partitioned test data, it also had the following confusion matrix:
- ![Image](images/Confusion_Matrix.png)
+<img src="images/Confusion_Matrix.png" width="500"/>
 
 This classifier is named as such because it is “passive” for correct classifications, but is “aggressive” for miscalculations. It then adjusts and updates in order to correct the loss, with a goal of changing the norm of the weight vector as little as possible. Passive-Aggressive algorithms are specifically useful for large-scale learning on dynamic data, such as news that is released continuously. The Passive-Aggressive classifier always correctly classifies the last-seen data, whereas many other classifiers are not able to do this, as their update sizes are constant. The Passive-Aggressive classifier is also more efficient, which is important for our large dataset. We acknowledge the shortcomings of the Passive-Aggressive algorithm, however, as it is sensitive to noise in the dataset. This classifier is aggressive in the presence of noise, and updates accordingly. That said, due to the significantly successful statistical results of the Passive-Aggressive classifier, we decided to continue using the Passive-Aggressive classifier for our final step of the project.
 
@@ -129,7 +129,7 @@ This classifier is named as such because it is “passive” for correct classif
 ## Classifying the Original Dataset
 The next and final step of the project was to use the classifier we just created to classify the same articles used during the unsupervised learning. This was a fairly straight forward process that involved running the 143k articles through the model and saving what prediction label they received. The results we observed were truly fascinating, but we will dive more into examining the results later on. However, here you can see a chart broken down by category showing the rate of fake news in that category. Red represents the percent labeled fake news, while green represents the percent labeled true.
 
-![Image](images/prediction_chart.png)
+<img src="images/prediction_chart.png" width="500"/>
 
 ### Overall Classification Results
 As you can see in the chart above, the results we observed were quite interesting. The first defining property of the results was the overall percent of the original 143k articles (61%) that were predicted to be fake news. At first glance, this value seems higher than expected. In fact one could point to the fact that the classifier used a 50/50 ratio of fake vs real news, which may point to an issue with the classifier. However, there are two important reasons why that is not the case. Firstly, the classifier’s confusion matrix (along with other statistics) clearly shows it is doing better than random guessing between fake and real news. Secondarily, fake news is simply far more present online than most people realize. While the exact figure is unknown it is estimated that over 50% of “articles” (using that term loosely) online are potentially fake news. This [article](https://www.digitalnewsreport.org/survey/2018/misinformation-and-disinformation-unpacked/) contains fascinating polls and surveys to show how widespread an issue this is.
