@@ -30,7 +30,7 @@ The following image shows the sizes of each cluster of articles. We arbitrarily 
 | 8 | Education |
 | 9 | Domestic Violence |
 
-<img src="images/Group_Distribution.png", width="400"/>
+<img src="images/Group_Distribution.png" width="500"/>
 
 The distribution for our data was fairly similar between the different group labels. The smallest label had 5.74k data points, while the second largest had 16.99k. However, the largest group (with "people, film, life, time, thing" as its most frequent words) had 35.52k, which was quite a bit larger than any other group. This is largely dependent on what data set of articles was used, but it makes sense that the large number of articles with such broadly applicable words would form a single large cluster, while articles with words related to topics like sports or economics that share little overlap would instead form smaller individual clusters.
 
@@ -49,34 +49,34 @@ It is worth noting that our distribution will have outlier articles. The outlier
 Below, we have created word clouds showing the most frequent 15 words for each of the 10 groups. The words' sizes are directly proportional to their TF-IDF value used to cluster these articles. It is quite easy to see the general subject matter of each of the clusters based on these visualizations. This word cloud pictures were also how we decided on the category names.
 
 **Group 0: "International Affairs"**  
-![Image](images/Word_Clouds/Group_0.png)
+<img src="images/Word_Clouds/Group_0.png" width="500"/>
 
 **Group 1: "Law Enforcement"**  
-![Image](images/Word_Clouds/Group_1.png)
+<img src="images/Word_Clouds/Group_1.png" width="500"/>
 
 **Group 2: "Economics"**  
-<img src="images/Word_Clouds/Group_2.png" width="400"/>
+<img src="images/Word_Clouds/Group_2.png" width="500"/>
 
 **Group 3: "Entertainment"**  
-<img src="images/Word_Clouds/Group_3.png" width="400"/>
+<img src="images/Word_Clouds/Group_3.png" width="500"/>
 
 **Group 4: "Political Events"**  
-<img src="images/Word_Clouds/Group_4.png" width="400"/>
+<img src="images/Word_Clouds/Group_4.png" width="500"/>
 
 **Group 5: "Political Investigations"**  
-<img src="images/Word_Clouds/Group_5.png" width="400"/>
+<img src="images/Word_Clouds/Group_5.png" width="500"/>
 
 **Group 6: "Healthcare"**  
-<img src="images/Word_Clouds/Group_6.png" width="400"/>
+<img src="images/Word_Clouds/Group_6.png" width="500"/>
 
 **Group 7: "Sports"**  
-<img src="images/Word_Clouds/Group_7.png" width="400"/>
+<img src="images/Word_Clouds/Group_7.png" width="500"/>
 
 **Group 8: "Education"**  
-<img src="images/Word_Clouds/Group_8.png" width="400"/>
+<img src="images/Word_Clouds/Group_8.png" width="500"/>
 
 **Group 9: "Domestic Violence"**  
-<img src="images/Word_Clouds/Group_9.png" width="400"/>
+<img src="images/Word_Clouds/Group_9.png" width="500"/>
 
 All in all, we are satisfied with the results of the unsupervised clustering, especially the way the articles formed groups with subjects relatively distinct from one another. This was useful as we moved forward into the supervised portion of the project. The end goal of the project is still to determine if certain categories from above are more or less prone to fake news.
 
