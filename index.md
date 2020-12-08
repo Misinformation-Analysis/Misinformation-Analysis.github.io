@@ -87,19 +87,44 @@ The next goal for the project was to build a classifier to help identify fake ne
 Even though we found a dataset that fit our requirement, it is worth noting we still had to perform the same preprocessing that we did on the article from the unsupervised learning section. This mainly includes putting it into a similar dataframe and removing all unnecessary non-nouns as they actually only distract and confuse the classification and clustering process.
 
 ### Selection of the Classifier
-For our final iteration we chose the [PassiveAggressiveClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.PassiveAggressiveClassifier.html). This classifier is named as such because it is “passive” for correct classifications, but is “aggressive” for miscalculations. It then adjusts and updates in order to correct the loss, with a goal of changing the norm of the weight vector as little as possible. Passive-Aggressive algorithms are specifically useful for large-scale learning on dynamic data, such as news that is released continuously. As discussed in our touchpoint feedback we received, we also considered other classifiers for our project, including Perceptron and SVM. The Passive-Aggressive classifier always correctly classifies the last-seen data, whereas Perceptron and SVM are not able to do this, as their update sizes are constant. The Passive-Aggressive classifier is also more efficient, which is essential to our large dataset. We acknowledge shortcomings of Passive-Aggressive however, as it is weaker to noise in the dataset. This classifier is more tolerant to noise than other classifiers we considered, such as We don’t see the effects of noise in our results, and due to the successful statistical results of our classifier, we decided to continue using the Passive-Aggressive classifier in our final project.
+We tried training several models on the dataset, namely a Passive-Aggressive Classifier, a Decision Tree (with a max depth of 30), and Logistic Regression. The accuracy, precision, recall, and F1 scores of the three models were as follows:
 
-It had the best overall stats after training and testing with the follow analytical scores:
+**Passive-Aggressive**  
 
-| Name | Score |
+| Metric | Score |
 | --- | --- |
-| Accuracy | 94.34% |
+| Accuracy | 0.9434 |
 | Precision: | 0.9181 |
 | Recall: | 0.9538 |
 | F1 Score: | 0.9456 | 
 
-Using the partitioned test data it also had the following confusion matrix:
+**Decision Tree**  
+
+| Metric | Score |
+| --- | --- |
+| Accuracy | 0.8654 |
+| Precision: | 0.8210 |
+| Recall: | 0.8947 |
+| F1 Score: | 0.8748 | 
+
+**Logistic Regression**  
+
+| Metric | Score |
+| --- | --- |
+| Accuracy | 0.9361 |
+| Precision: | 0.9115 |
+| Recall: | 0.9453 |
+| F1 Score: | 0.9396 | 
+
+
+All 3 classifiers performed fairly well on the test data. In the end, we decided to go with the Passive-Aggressive classifier, because it had the best stats when compared with the other two models.  
+
+Using the partitioned test data, it also had the following confusion matrix:
  ![Image](images/Confusion_Matrix.png)
+
+This classifier is named as such because it is “passive” for correct classifications, but is “aggressive” for miscalculations. It then adjusts and updates in order to correct the loss, with a goal of changing the norm of the weight vector as little as possible. Passive-Aggressive algorithms are specifically useful for large-scale learning on dynamic data, such as news that is released continuously. The Passive-Aggressive classifier always correctly classifies the last-seen data, whereas many other classifiers are not able to do this, as their update sizes are constant. The Passive-Aggressive classifier is also more efficient, which is important for our large dataset. We acknowledge the shortcomings of the Passive-Aggressive algorithm, however, as it is sensitive to noise in the dataset. This classifier is aggressive in the presence of noise, and updates accordingly. That said, due to the significantly successful statistical results of the Passive-Aggressive classifier, we decided to continue using the Passive-Aggressive classifier for our final step of the project.
+
+
 
 ## Classifying the Original Dataset
 The next and final step of the project was to use the classifier we just created to classify the same articles used during the unsupervised learning. This was a fairly straight forward process that involved running the 143k articles through the model and saving what prediction label they received. The results we observed were truly fascinating, but we will dive more into examining the results later on. However, here you can see a chart broken down by category showing the rate of fake news in that category. Red represents the percent labeled fake news, while green represents the percent labeled true.
@@ -107,21 +132,22 @@ The next and final step of the project was to use the classifier we just created
 ![Image](images/prediction_chart.png)
 
 ### Overall Classification Results
-As you can see in the chart above, the results we observed were quite interesting. The first defining property of the results was the overall percent of the original 143k articles (61%) that were predicted to be fake news. At first glance, this value seems higher than expected. In fact one could point to the fact that the classifier used a 50/50 ratio of fake vs real news, which may point to an issue with the classifier. However, there are two important reasons why that is not the case. Firstly, the classifier’s confusion matrix (along with other statistics) clearly shows it is doing better than random guessing between fake and real news. Secondarily, fake news is simply far more present online than most people realize. While the exact figure is unknown it is estimated that over 50% of “articles” (using that term loosely) online are potentially fake news. This [article](https://www.digitalnewsreport.org/survey/2018/misinformation-and-disinformation-unpacked/) contains fascinating polls and surveys to show how widespread this issue is.
+As you can see in the chart above, the results we observed were quite interesting. The first defining property of the results was the overall percent of the original 143k articles (61%) that were predicted to be fake news. At first glance, this value seems higher than expected. In fact one could point to the fact that the classifier used a 50/50 ratio of fake vs real news, which may point to an issue with the classifier. However, there are two important reasons why that is not the case. Firstly, the classifier’s confusion matrix (along with other statistics) clearly shows it is doing better than random guessing between fake and real news. Secondarily, fake news is simply far more present online than most people realize. While the exact figure is unknown it is estimated that over 50% of “articles” (using that term loosely) online are potentially fake news. This [article](https://www.digitalnewsreport.org/survey/2018/misinformation-and-disinformation-unpacked/) contains fascinating polls and surveys to show how widespread an issue this is.
 
-### Category by Category Analysis
+### Category-by-Category Analysis
 Looking deeper at each individual category, there are a few interesting things to point out. Starting with the categories with the least amount of misinformation, you have Economics and International Affairs. The goal of the project was to help content publishers know where best to focus their resources to monitor for fake news. Because these categories were significantly lower than the average, and are heavily related to topics that the supervised dataset contained, we believe we can say with high confidence that these topics are where content producers need to spend the least amount of resources.
 
 Switching gears to focus on the categories of high rates of fake news, the worst predicted category is Entertainment. This result is not very surprising considering how many “click-bait” articles get written in this category plus the existence of tabloids. It is obvious that when discussing anything in the entertainment category content producers need to spend more time vetting articles and sources. 
 
-However, things become a bit less clear when one notices that the next three highest categories are Education, Domestic Violence, and Sports. At first glance this may appear wrong, and while it certainly may be a bit incorrect due to the shortcomings with our classifier, we believe the real reason the rate is so high is the very reason we decided to explore this topic. Currently, nearly all effort in this space is being spent on policing fake news in Politics and related topics. Next to no effort is being spent reporting fake news in Education, Domestic Violence, and Sports. We are not claiming that in reality almost 80% of articles in these categories are fake news, but rather they have a very high rate of fake news and clearly there is a lot to be gained by content procedures spending more time, energy, and resources on policing these categories.
-
-## Final Thoughts 
-It is clear that higher scrutiny in Politics and related categories is helping to push those categories rates of misinformation even lower and there is still a good bit to go to reducing the problem of misinformation. Additionally, our final analysis shows there is much work to be done in several unexpected categories like Entertainment, Education, Domestic Violence, and Sports. Our hope is that content producers and content hosting websites take our work on this project and devote higher scrutiny to new articles in these categories. It is not hard to imagine a system that could use simple keyword analysis to place the article into our of our 10 categories and then use a similar chart to what we produced to determine the appropriate level of scrutiny for the article.
-
+However, things become a bit less clear when one notices that the next three highest categories are Education, Domestic Violence, and Sports. At first glance this may appear odd, and it may be partially due to the lack of generalizability of our training dataset (more on this in the following section). That said, we believe this project shines a light on just how widespread misinformation is. Currently, nearly all effort in this field is being spent on policing fake news related to Politics and related topics. Next to no effort is being spent analyzing fake news about Education or Domestic Violence. We are not claiming that our model proves that almost 80% of articles in these categories are fake news; Rather, we claim that fake news is prevalent in more areas than just politics, and clearly there is a lot to be gained by content procedures spending more time, energy, and resources on analyzing the validity of news in these categories.
 
 ## Project Limitations
-Most of the limitations of our project were centered around the availability of datasets, mainly labeled fake news datasets. Since our project aims to identify the news article categories that are more likely to contain fake news, the diversity of our dataset, especially our classifier’s dataset is imperative to draw conclusions. In our touchpoints, we focused on the importance of having a more diverse dataset. Our model classified the “entertainment” and “sports” categories in this dataset as having the highest likelihood of being fake news. We concluded that this result may be a tad bit inaccurate due to the limited availability of articles in these categories within our classifier’s training datasets. However, the negative impacts of fake news being consumed in these categories are significantly less significant than fake news consumption in more impactful categories, such as “political investigation” or “law enforcement”. Therefore, we can focus on other categories that we have identified as needing more research on fake news in our final results. 
+Most of the limitations of our project were centered around the availability of datasets, mainly labeled fake news datasets. Since our project aims to identify the news article categories that are more likely to contain fake news, the diversity of our dataset, especially our classifier’s labeled dataset, is imperative to draw conclusions. In our touchpoints, we focused on the importance of having a more diverse dataset. Our model classified the “entertainment” and “sports” categories in this dataset as having the highest likelihood of being fake news. We concluded that this result may be a bit inaccurate due to the limited availability of articles in these categories within the classifier's labeled training and test datasets. Ultimately, a more diverse dataset of labeled articles would have likely led to our model being a bit more generalizable. Regardless, we hope that these results raise awareness of the importance of scrutinizing articles of all topics for misinformation. 
+
+## Final Thoughts 
+It is clear that higher scrutiny in Politics and related categories is helping to push those categories rates of misinformation lower and there is still a good bit to go to reducing the problem of misinformation. Additionally, our final analysis shows there is much work to be done in several unexpected categories like Entertainment, Education, and Domestic Violence. Our hope is that content producers and content hosting websites will see our work as reason to devote higher scrutiny to articles in these categories. It is not hard to imagine a system that could use simple keyword analysis to place the article into one of our 10 categories and then use a similar chart to what we produced to determine the appropriate level of scrutiny for the article.
+
+
 
 
 _This project was created for Georgia Tech CS 4641 - Fall 2020_
