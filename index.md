@@ -49,34 +49,34 @@ It is worth noting that our distribution will have outlier articles. The outlier
 Below, we have created word clouds showing the most frequent 15 words for each of the 10 groups. The words' sizes are directly proportional to their TF-IDF value used to cluster these articles. It is quite easy to see the general subject matter of each of the clusters based on these visualizations. This word cloud pictures were also how we decided on the category names.
 
 **Group 0: "International Affairs"**  
-<img src="images/Word_Clouds/Group_0.png", width="400"/>
+![Image](images/Word_Clouds/Group_0.png)
 
 **Group 1: "Law Enforcement"**  
-<img src="images/Word_Clouds/Group_1.png", width="400"/>
+![Image](images/Word_Clouds/Group_1.png)
 
 **Group 2: "Economics"**  
-<img src="images/Word_Clouds/Group_2.png", width="400"/>
+<img src="images/Word_Clouds/Group_2.png" width="400"/>
 
 **Group 3: "Entertainment"**  
-<img src="images/Word_Clouds/Group_3.png", width="400"/>
+<img src="images/Word_Clouds/Group_3.png" width="400"/>
 
 **Group 4: "Political Events"**  
-<img src="images/Word_Clouds/Group_4.png", width="400"/>
+<img src="images/Word_Clouds/Group_4.png" width="400"/>
 
 **Group 5: "Political Investigations"**  
-<img src="images/Word_Clouds/Group_5.png", width="400"/>
+<img src="images/Word_Clouds/Group_5.png" width="400"/>
 
 **Group 6: "Healthcare"**  
-<img src="images/Word_Clouds/Group_6.png", width="400"/>
+<img src="images/Word_Clouds/Group_6.png" width="400"/>
 
 **Group 7: "Sports"**  
-<img src="images/Word_Clouds/Group_7.png", width="400"/>
+<img src="images/Word_Clouds/Group_7.png" width="400"/>
 
 **Group 8: "Education"**  
-<img src="images/Word_Clouds/Group_8.png", width="400"/>
+<img src="images/Word_Clouds/Group_8.png" width="400"/>
 
 **Group 9: "Domestic Violence"**  
-<img src="images/Word_Clouds/Group_9.png", width="400"/>
+<img src="images/Word_Clouds/Group_9.png" width="400"/>
 
 All in all, we are satisfied with the results of the unsupervised clustering, especially the way the articles formed groups with subjects relatively distinct from one another. This was useful as we moved forward into the supervised portion of the project. The end goal of the project is still to determine if certain categories from above are more or less prone to fake news.
 
